@@ -11,7 +11,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-    response.send('Whats up? from horiizon/ World');
+    response.send('Whats up? from horiizon World');
 });
 
 app.listen(app.get('port'), function() {
