@@ -37,13 +37,13 @@ li{
     text-align: left;
 }
 footer{
-	position: relative;
+	position: absolute;
 	width: 99%;
 	padding: 2px;
 	margin: 0;
 	bottom: 0;
 	background-color: rgba(88,88,88,0.3);
-	top: calc(100%);
+	top: calc(100% - 140px);
 	height: 80px;
 }
 #stickyFoot{
