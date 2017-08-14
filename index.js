@@ -8,7 +8,7 @@ var PORT = process.env.PORT || 8080;
 var waitingPlayer;
 
 app.set('port', (PORT));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public_html'));
 
 var server = http.createServer(app);
 var io = socket(server);
@@ -24,7 +24,7 @@ app.get('/', function (request, response) {
 
 io.on('connection', onConnect);
 
-
+io.on('disconnect', onDisconnect);
 
 server.listen(PORT, function () {
     console.log('Server listening: ' + PORT);
