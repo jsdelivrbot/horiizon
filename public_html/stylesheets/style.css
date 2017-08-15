@@ -752,8 +752,16 @@ aside{/*PC ONLY----*/
 }
 #about-text{
     text-align: left;
+    padding: 4px;
     border-radius: 6px;
     border: rgba(10,10,10,0.8);
+}
+#about-text h3{
+    padding: 10px;
+}
+#about-text h1{
+    color: gray;
+    padding: 8px;
 }
 #about-text p{
     padding: 8px;
@@ -771,13 +779,13 @@ aside{/*PC ONLY----*/
     text-decoration: underline;
 }
 #cv-dl{
-    background: rgba(10,20,30,0.5);
+    background: rgba(10,20,30,0.7);
     position: relative;
     width: 34%;
     margin: 16px auto;
     padding: 8px;
     border-radius: 6px;
-
+    border: 1px solid lawngreen;
 }
 
 
