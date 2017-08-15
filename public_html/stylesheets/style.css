@@ -537,8 +537,6 @@ aside{/*PC ONLY----*/
 #formDiv:hover{
 	opacity: 1;
 }
-
-
 .nav{		/*--INDEX PAGE--*/
 	position: fixed;
 	width: 0;
@@ -737,6 +735,52 @@ aside{/*PC ONLY----*/
 	margin-top: 45%;
 	color: red;
 }
+/*==============ABOUT====================*/
+#about-main h1{
+    background: rgba(10,10,10,0.6);
+}
+#about-main h3{
+    padding: 4px;
+}
+#montreal{
+    position: absolute;
+    right: 4px;
+    top: 4px;
+}
+#montreal h3{
+    color: lawngreen;
+}
+#about-text{
+    text-align: left;
+    border-radius: 6px;
+    border: rgba(10,10,10,0.8);
+}
+#about-text p{
+    padding: 8px;
+    text-align: left;
+}
+#cv{
+    background: rgba(10,10,10,0.5);
+    width: 80%;
+    margin: 0 auto;
+}
+#cv li{
+    padding: 4px;
+}
+#cv h3{
+    text-decoration: underline;
+}
+#cv-dl{
+    background: rgba(10,20,30,0.5);
+    position: relative;
+    width: 34%;
+    margin: 16px auto;
+    padding: 8px;
+    border-radius: 6px;
+
+}
+
+
 
 /*Above-Mobile min320x568------*/ 
 @media only screen and (min-width:500px){

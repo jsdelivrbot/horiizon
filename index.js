@@ -18,8 +18,6 @@ var io = socket(server);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-
-
 app.get('/about.html', function (req, res) {
     res.send('hello');
 });
