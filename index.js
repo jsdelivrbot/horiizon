@@ -18,13 +18,23 @@ var io = socket(server);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+
+
+app.get('/about.html', function (req, res) {
+    res.send('hello');
+});
+
 app.get('/', function (request, response) {
     response.send('Whats up? from horiizon World');
 });
 
+
+
 io.on('connection', onConnect);
 
 io.on('disconnect', onDisconnect);
+
+
 
 server.listen(PORT, function () {
     console.log('Server listening: ' + PORT);
