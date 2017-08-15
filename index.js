@@ -2,17 +2,35 @@ var express = require('express');
 var socket = require('socket.io');
 var http = require('http');
 var events = require('events');
+var mongoose = require('mongoose');
 
 var app = express();
 var PORT = process.env.PORT || 8080;
+
 var waitingPlayer;
 
 app.set('port', (PORT));
 app.use(express.static(__dirname + '/public_html'));
 
+
+mongoose.connect('mongodb://localhost:8080/users', {
+    useMongoClient: true
+});
+
+mongoose.model('users', {name: String});
+mongoose.model('posts', {content: String});
+
+app.get('/users', function (req, res) {
+    mongoose.model('users').find(function (err, users) {
+        res.send(users);
+        console.log('Get req: users');
+    });
+});
+
+
+
 var server = http.createServer(app);
 var io = socket(server);
-
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
@@ -24,6 +42,7 @@ app.get('/about.html', function (req, res) {
 
 app.get('/', function (request, response) {
     response.send('Whats up? from horiizon World');
+    console.log('General Get Called');
 });
 
 
@@ -34,15 +53,15 @@ io.on('disconnect', onDisconnect);
 
 
 
-server.listen(PORT, function () {
-    console.log('Server listening: ' + PORT);
-});
-
-
-
-//app.listen(app.get('port'), function () {
-//    console.log('Node app is running on port', //app.get('port'));
+//server.listen(PORT, function () {
+ //   console.log('Server listening: ' + PORT);
 //});
+
+
+
+app.listen(app.get('port'), function () {
+    console.log('Node app is running on port', app.get('port'));
+});
 
 function onConnect(sock) {  
     sock.emit('msg', 'Welcome to Chit-Chat-Toe!');
