@@ -303,16 +303,36 @@ section h2 {
 }
 .chatDiv{
 	position: relative;
+    padding-bottom: 0;
+    overflow-y: scroll;
     width: 100%;
 	height: 200px;
 	background-color: rgba(0,0,0,0.3);
+    
 }
 .chatDiv h2{
     text-align: center;
     color: lawngreen;
 }
+#chat-main{
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+}
+#chat-send{
+    position: absolute;
+    height: 100%;
+    bottom: 0;
+    width: 100%;
+
+    
+}
+#chat-form{}
+
 #chat-input{
     text-align: left;
+    height: 22px;
 }
 .game-controls{
     border: 1px solid lawngreen;

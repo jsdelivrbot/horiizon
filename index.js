@@ -2,16 +2,18 @@ var express = require('express');
 var socket = require('socket.io');
 var http = require('http');
 var events = require('events');
-var mongoose = require('mongoose');
+var mongo = require('mongodb').MongoClient;
+var assert = require('assert');
 
 var app = express();
 var PORT = process.env.PORT || 8080;
 
-var waitingPlayer;
+
 
 app.set('port', (PORT));
 app.use(express.static(__dirname + '/public_html'));
 
+//============================
 
 mongoose.connect('mongodb://localhost:8080/users', {
     useMongoClient: true
@@ -27,11 +29,14 @@ app.get('/users', function (req, res) {
     });
 });
 
-
+app.listen(app.get('port'), function () {
+    console.log('Node app is running on port', app.get('port'));
+});
+//=============================
 
 var server = http.createServer(app);
 var io = socket(server);
-
+var waitingPlayer;
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -59,13 +64,11 @@ io.on('disconnect', onDisconnect);
 
 
 
-app.listen(app.get('port'), function () {
-    console.log('Node app is running on port', app.get('port'));
-});
+
 
 function onConnect(sock) {  
     sock.emit('msg', 'Welcome to Chit-Chat-Toe!');
-    sock.on('turn', function (turn) {
+    sock.on('turn', function(turn) {
         console.log(turn);
     });
     sock.on('msg', function (txt) {
