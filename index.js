@@ -7,32 +7,9 @@ var assert = require('assert');
 
 var app = express();
 var PORT = process.env.PORT || 8080;
-
-
-
 app.set('port', (PORT));
 app.use(express.static(__dirname + '/public_html'));
-
 //============================
-
-mongoose.connect('mongodb://localhost:8080/users', {
-    useMongoClient: true
-});
-
-mongoose.model('users', {name: String});
-mongoose.model('posts', {content: String});
-
-app.get('/users', function (req, res) {
-    mongoose.model('users').find(function (err, users) {
-        res.send(users);
-        console.log('Get req: users');
-    });
-});
-
-app.listen(app.get('port'), function () {
-    console.log('Node app is running on port', app.get('port'));
-});
-//=============================
 
 var server = http.createServer(app);
 var io = socket(server);
@@ -45,12 +22,10 @@ app.get('/about.html', function (req, res) {
     res.send('hello');
 });
 
-app.get('/', function (request, response) {
+server.get('/', function (request, response) {
     response.send('Whats up? from horiizon World');
     console.log('General Get Called');
 });
-
-
 
 io.on('connection', onConnect);
 
@@ -58,12 +33,27 @@ io.on('disconnect', onDisconnect);
 
 
 
-//server.listen(PORT, function () {
- //   console.log('Server listening: ' + PORT);
-//});
+server.listen(PORT, function () {
+    console.log('Server listening: ' + PORT);
+});
 
-
-
+//============================
+/*
+const stitch = require("mongodb-stitch")
+const client = new stitch.StitchClient('horiizonapp-kjfmu');
+const db = client.service('mongodb', 'mongodb-atlas').db('HoriizonDB');
+client.login().then(() =>
+  db.collection('users.horiizonCollection').updateOne({owner_id: client.authedId()}, {$set:{number:42}}, {upsert:true})
+).then(() =>
+  db.collection('users.horiizonCollection').find({owner_id: client.authedId()})
+).then(docs => {
+  console.log("Found docs", docs)
+  console.log("[MongoDB Stitch] Connected to Stitch")
+}).catch(err => {
+  console.error(err)
+});
+*/
+//=============================
 
 
 function onConnect(sock) {  
@@ -87,7 +77,7 @@ function onConnect(sock) {
     sock.on('disconnect', onDisconnect);
    
 }
-function onDisconnect(sock){
+function onDisconnect(sock) {
     console.log('Socket Client disconnected!');
     
 }
