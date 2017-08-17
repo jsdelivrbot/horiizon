@@ -7,37 +7,49 @@ var assert = require('assert');
 
 var app = express();
 var PORT = process.env.PORT || 8080;
+
 console.log('port set: ' + PORT);
-app.set('port', (PORT));
+
+
+app.set('port', PORT);
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
 app.use(express.static(__dirname + '/public_html'));
-//============================
+//===========SOCKETS===============
 
 var server = http.createServer(app);
 var io = socket(server);
 var waitingPlayer;
-// views is directory for all template files
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-
-app.get('/about.html', function (req, res) {
-    res.send('hello');
-});
-
-app.get('/', function (request, response) {
-    response.send('Whats up? from horiizon World');
-    console.log('General Get Called');
-});
 
 io.on('connection', onConnect);
 
 io.on('disconnect', onDisconnect);
 
+//=============ROUTES================
+app.get('/about.html', function (req, res) {
+    res.send('hello');
+});
 
+app.get('/', (req, res) => {
+    res.render('index');
+    console.log('get / called: render index');
+});
+
+app.get('/test.html', function (req, res) {
+    res.send();
+    console.log('get test.html');
+});
+app.get('/', function (request, response) {
+    response.send('Whats up? from horiizon World');
+    console.log('General Get Called');
+});
 server.listen(PORT, function () {
     console.log('Server listening: ' + PORT);
 });
 
-//============================
+//==========DATABASE===============
 /*
 const stitch = require("mongodb-stitch")
 const client = new stitch.StitchClient('horiizonapp-kjfmu');
@@ -53,7 +65,7 @@ client.login().then(() =>
   console.error(err)
 });
 */
-//=============================
+//=============FUNCTIONS================
 
 
 function onConnect(sock) {  
