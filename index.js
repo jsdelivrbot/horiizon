@@ -7,6 +7,7 @@ var assert = require('assert');
 
 var app = express();
 var PORT = process.env.PORT || 8080;
+console.log('port set: ' + PORT);
 app.set('port', (PORT));
 app.use(express.static(__dirname + '/public_html'));
 //============================
@@ -22,7 +23,7 @@ app.get('/about.html', function (req, res) {
     res.send('hello');
 });
 
-server.get('/', function (request, response) {
+app.get('/', function (request, response) {
     response.send('Whats up? from horiizon World');
     console.log('General Get Called');
 });
@@ -30,7 +31,6 @@ server.get('/', function (request, response) {
 io.on('connection', onConnect);
 
 io.on('disconnect', onDisconnect);
-
 
 
 server.listen(PORT, function () {
