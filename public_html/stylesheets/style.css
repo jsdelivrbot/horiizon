@@ -45,10 +45,6 @@ footer{
 	background-color: rgba(88,88,88,0.3);
 	height: 34px;
 }
-#stickyFoot{
-	position: absolute;
-	top: calc(100vh - 162px);
-}
 a {
 	text-decoration: none;
 }
@@ -79,7 +75,7 @@ header{
 	width: 100%;
 	left: 0;
 	height: 76px;
-	padding: 0px 15px 3px 84px;
+	padding: 0px 15px 3px 4px;
 	background-color: black;
 	line-height: 30px;
 }

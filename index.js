@@ -8,43 +8,35 @@ var assert = require('assert');
 var app = express();
 var PORT = process.env.PORT || 8080;
 
-console.log('port set: ' + PORT);
-
+var data = {
+    counter: 1
+};
 
 app.set('port', PORT);
-
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-
 app.use(express.static(__dirname + '/public_html'));
-//===========SOCKETS===============
 
+//===========SOCKETS===============
 var server = http.createServer(app);
 var io = socket(server);
 var waitingPlayer;
 
 io.on('connection', onConnect);
-
 io.on('disconnect', onDisconnect);
 
 //=============ROUTES================
-app.get('/about.html', function (req, res) {
+app.get('/about', function (req, res) {
     res.send('hello');
 });
 
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', {data: data});
+    data.counter++;
+    
     console.log('get / called: render index');
 });
 
-app.get('/test.html', function (req, res) {
-    res.send();
-    console.log('get test.html');
-});
-app.get('/', function (request, response) {
-    response.send('Whats up? from horiizon World');
-    console.log('General Get Called');
-});
 server.listen(PORT, function () {
     console.log('Server listening: ' + PORT);
 });
@@ -69,7 +61,9 @@ client.login().then(() =>
 
 
 function onConnect(sock) {  
+    console.log('Socket Client Connected!');
     sock.emit('msg', 'Welcome to Chit-Chat-Toe!');
+    
     sock.on('turn', function(turn) {
         console.log(turn);
     });
