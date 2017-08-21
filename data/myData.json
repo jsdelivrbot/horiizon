@@ -1,0 +1,28 @@
+{
+  "name": "horiizon",
+  "version": "1.0.0",
+  "description": "Website Server App",
+  "main": "index.js",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "4.15.4",
+    "mongodb": "^2.2.31",
+    "mongodb-stitch": "0.0.25",
+    "socket.io": "2.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NodeBeast/horiizon.git"
+  },
+  "author": "NodeBeast",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NodeBeast/horiizon/issues"
+  },
+  "homepage": "https://github.com/NodeBeast/horiizon#readme"
+}

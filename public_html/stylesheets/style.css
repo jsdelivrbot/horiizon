@@ -193,10 +193,10 @@ header{
 	border-radius: 6px;
 	color: black;
 }
-/*==============ARTICLE==================*/
+/*==============ARTICLE================*/
 article{
 	position: relative;
-	width: 100px;
+	width: 0;
 	top: 0;
 	left: 0;
 	transition: all 0.6s ease;
@@ -262,11 +262,10 @@ article{
 }
 /*=============SECTION==================*/
 section{				/*SECTION*/
-	position: absolute;
-	width: calc(100% - 100px);
+	position: relative;
+	width: 100%;
 	min-height: calc(100vh - 276px);
-	left: 100px;
-	top: 82px;
+	left: 0;
 	border-radius: 6px;
 	transform: all 2s ease;
 }
@@ -314,18 +313,14 @@ section h2 {
     position: relative;
     height: 100%;
     width: 100%;
-
+    display: block;
 }
 #chat-send{
     position: absolute;
-    height: 100%;
     bottom: 0;
     width: 100%;
-
-    
 }
 #chat-form{}
-
 #chat-input{
     text-align: left;
     height: 22px;
@@ -446,7 +441,6 @@ aside{/*PC ONLY----*/
 	background: rgba(0,0,0,0.6);
 	border-radius: 6px;
 }
-
 .blinking-cursor {
   font-weight: 100;
   font-style: italic;
@@ -810,7 +804,7 @@ aside{/*PC ONLY----*/
 @media only screen and (min-width:500px){
 	section{
 			width: 50%;
-			left: 100px;
+			left: 0;
 	}
 	article{
 		left: 0;
