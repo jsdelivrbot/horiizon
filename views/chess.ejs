@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>  
+<head>
+  <% include ./partials/head.ejs %>
+</head>
+<body> 
+<div id="container"><!--MAIN CONTAINER CLASS-->
+ <header >						<!--BANNER-->
+	<% include ./partials/header %>
+ </header> 
+ <main><!--MAIN (SECTION/ARTICLE/ASIDE)-->
+	<div class="tagLine"><!--GOOGLE SEARCH BAR-->
+		<div id="search">	
+			<form method="GET" autocomplete="on" action="http://www.google.com/search">
+				<input type="text" name="q" placeholder="Google"/>
+				<input type="submit" value="search"/>
+			</form>
+		</div>
+ 
+		<div class="RSS">
+			<p>Sites, Software and Services: 
+			<span class="flashyText"> -- -Only Free, only the best</span></p>
+		</div>
+	</div>
+	    
+     
+	<section id="section">  <!--Chat & Game-->
+		
+        <div id="chessDIv">
+            
+        <canvas id="canv"></canvas>
+            
+        <table id="board">
+           <tr>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+           </tr>
+           <tr>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+           </tr>
+           <tr>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+           </tr>
+           <tr>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+           </tr>
+           <tr>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+           </tr>
+           <tr>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+           </tr>
+           <tr>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+           </tr>
+           <tr>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+               <th class="black"></th>
+               <th class="white"></th>
+           </tr>
+       </table>
+        
+            
+        <button id="testButton" type="button" onclick="print()">Test</button>
+            
+        </div>
+        
+	</section>  
+ </main>
+ </div><!--========END OF CONTAINER WRAPPER==-->
+<script src="/socket.io/socket.io.js"></script>
+<script src="/client/client.js"></script>
+
+<script>
+    var socket = io();
+    
+    var canv = getElementById('canv').getContext("2d");
+    
+    let pos = function(){
+        var x = [];
+        for(var j=0; j<8;j++) {
+            x[j] = {0,0,0,0,0,0,0,0};
+        };
+        
+    };
+    
+    var white = pos();
+    var black = pos();
+    
+    
+    socket.on('turn', function(from, to){
+        canv.clearRect(0,0,400,400);
+    });
+    
+    var turn = function(move) {
+        var data = {}
+        
+        socket.emit('game', {data: game})
+    };
+                    
+    var print = function(array){
+        for(var j=0;j<8;j++){
+            for(var k=0;k<8)
+            console.log(data.row[j].col[k]);
+        };
+    };
+ </script>
+    
+
+</body>
+</html>

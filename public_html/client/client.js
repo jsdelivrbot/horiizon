@@ -27,3 +27,7 @@ function addTurnListener(id) {
     });
 }
 ['rock', 'paper', 'scissors'].forEach(addTurnListener);
+
+function gameState(game){
+    
+}

@@ -16,6 +16,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public_html'));
 
 //===============MONGO================
+/*
 app.get('/list', function (req, res) {
     var dbClient = mongodb.MongoClient;
     var url = 'mongodb://localhost:27017/horiizon';
@@ -33,18 +34,32 @@ app.get('/list', function (req, res) {
         
     });
 });
+*/
 //===========SOCKETS===============
 var server = http.createServer(app);
 var io = socket(server);
 var waitingPlayer;
+var SOCKET_LIST = [];
 
 io.on('connection', onConnect);
 io.on('disconnect', onDisconnect);
+
+io.sockets.on('connection', (socket) =>{
+
+    
+});
+setInterval(function(){
+    
+});
 
 //=============ROUTES================
 app.get('/about', function (req, res) {
     res.send('hello');
 });
+app.get('/chess', function (req, res) {
+    res.render('chess', {data: data});
+    console.log('App.get called for Chess')
+})
 
 app.get('/', function(req, res) {
     res.render('index', {data: data});
@@ -62,31 +77,28 @@ server.listen(PORT, function () {
 
 
 function onConnect(sock) {  
-    console.log('Socket Client Connected!');
-    
-    sock.emit('msg', 'Welcome to Chit-Chat-Toe!');
+    console.log('OnConnect: Socket connected');
+    sock.emit('msg', 'Welcome');
     
     sock.on('msg', function (txt) {
         io.emit('msg', txt);
         console.log('Server: Broadcasting: ' + txt);
     });
     
-    if (waitingPlayer) {//Enough Players: Start Match
-        matchStart(waitingPlayer, sock);
-        waitingPlayer = null;
-    }else {//no waiting player
-        waitingPlayer = sock;
-        sock.emit('msg', 'You are waiting for a second player!');
-    }
+    
+    sock.id = Math.random();
+    sock.x = 0;
+    sock.y = 0;
+    
+    SOCKET_LIST.push(sock);
+    console.log('Players Array Length: ' + SOCKET_LIST.length);
     sock.on('disconnect', onDisconnect);
-}
+};
 
 function onDisconnect(sock) {
-    console.log('Socket Client disconnected!');
+    SOCKET_LIST.pop(sock);
+    console.log('Player Disconnected, Players left:  ' + SOCKET_LIST.length);
+};
     
-}
-function matchStart(sock1, sock2) {
-    sock2.emit('msg', 'Match Starts Now!');
-}
 
 
