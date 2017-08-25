@@ -802,31 +802,34 @@ aside{/*PC ONLY----*/
     position: relative;
     display: block;
     width: 100%;
-    background: black;
+    background: blue;
     border: 1px solid red;
 }
 #chessDiv table {
     display: table;
     border-collapse: separate;
-    border-spacing: 2px;
+    border-spacing: 0;
     border-color: gray;
 }
 .white{
     background: white;
+    opacity: 0.5;
 }
 .black{
     background: black;
+    opacity: 0.5;
 }
 #canv{
     display: block;
-    border:4px solid #000000;
-    margin: 6px auto;
+    z-index: 3;
+    border:1px solid #000000;
+    margin: 0 auto;
     width: 400px;
     height: 400px;
 }
 #board{
     position: absolute;
-    left: 230px;
+    right: 100%;
     top: 0;
 }
 #board tr{
@@ -841,7 +844,13 @@ aside{/*PC ONLY----*/
     height: 300px;
     background: black;
 }
-#testButton{
+#testDiv{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 10px;
+}
+.testButton{
     width: 100px;
     height: 50px;
     background: red;

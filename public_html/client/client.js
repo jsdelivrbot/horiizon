@@ -25,9 +25,19 @@ function addTurnListener(id) {
     button.addEventListener('click', function () {
         sock.emit('turn', id);
     });
-}
-['rock', 'paper', 'scissors'].forEach(addTurnListener);
+};
 
-function gameState(game){
+//========================CHESS CLIENT============
+    var canv = getElementById('canv').getContext("2d");
     
-}
+    let gameState = {};
+    var board = [];
+
+    
+    socket.on('update', function(data){
+        alert('Update Event Received!')
+        
+        gameState = data.game;
+        canv.clearRect(0,0,400,400);
+        canv.fillText('Hi'+data.x);
+    });

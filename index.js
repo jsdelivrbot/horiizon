@@ -38,19 +38,16 @@ app.get('/list', function (req, res) {
 //===========SOCKETS===============
 var server = http.createServer(app);
 var io = socket(server);
-var waitingPlayer;
-var SOCKET_LIST = [];
 
-io.on('connection', onConnect);
-io.on('disconnect', onDisconnect);
+var SOCKET_LIST = {};
+var PLAYER_LIST = {};
+var GAME = {};
 
 io.sockets.on('connection', (socket) =>{
-
-    
+    onConnect(socket);
+    onDisconnect(socket);
 });
-setInterval(function(){
-    
-});
+io.on('disconnect', onDisconnect);
 
 //=============ROUTES================
 app.get('/about', function (req, res) {
@@ -58,9 +55,9 @@ app.get('/about', function (req, res) {
 });
 app.get('/chess', function (req, res) {
     res.render('chess', {data: data});
+    data.counter++;
     console.log('App.get called for Chess')
 })
-
 app.get('/', function(req, res) {
     res.render('index', {data: data});
     data.counter++;
@@ -71,32 +68,83 @@ app.get('/', function(req, res) {
 server.listen(PORT, function () {
     console.log('Server listening: ' + PORT);
 });
-
-
 //=============FUNCTIONS================
 
-
-function onConnect(sock) {  
-    console.log('OnConnect: Socket connected');
-    sock.emit('msg', 'Welcome');
-    
-    sock.on('msg', function (txt) {
-        io.emit('msg', txt);
-        console.log('Server: Broadcasting: ' + txt);
-    });
+function onConnect(socket){
+    console.log('New Connection Socket');
+    socket.id = Math.random();
+    SOCKET_LIST[socket.id] = socket;
     
     
-    sock.id = Math.random();
-    sock.x = 0;
-    sock.y = 0;
+    socket.x1 = 0;
+    socket.x2 = 0;
+    socket.y1 = 0;
+    socket.y2 = 0;
     
-    SOCKET_LIST.push(sock);
-    console.log('Players Array Length: ' + SOCKET_LIST.length);
-    sock.on('disconnect', onDisconnect);
+    setBoard();
 };
 
-function onDisconnect(sock) {
-    SOCKET_LIST.pop(sock);
+var peices = {
+    1:"W Pawn",
+    2:"W Rook1",
+    3:"W Knight1",
+    4:"W Bishop1",
+    5:"W Queen",
+    6:"W King",
+    7:"W Bishop2",
+    8:"W Knight2",
+    9:"W Rook2",
+
+    11:"B Pawn",
+    12:"B Rook1",
+    13:"B Knight1",
+    14:"B Bishop1",
+    15:"B Queen",
+    16:"B King",
+    17:"B Bishop2",
+    18:"B Knight2",
+    19:"B Rook2"
+};
+
+
+function NewGame() {
+    var a = [];
+    
+    //INIT ARRAY
+    for(var i = 0; i<120;i++){
+        a[i]=0;
+    };
+    
+    //Peices
+    for(var k=1;k<9;k++){
+        a[k+20] = k+1; //white
+        a[k+90] = k+10;//Black
+    };
+    
+    //Load Pawns
+    for(var j=1;j<9;j++){
+        a[j+30]= j;//white 1-9
+        a[j+50]= j+11;//black
+    };
+    
+
+
+};
+
+function updater(data){
+    var pack = data;    
+    io.emit('update', pack);
+    console.log('Data Pack Sent!');
+};
+function setBoard(){
+    var pack = [];
+    board = new NewGame();
+    console.log('Board was set!');
+    updater(board);
+};
+
+function onDisconnect(socket) {
+    delete SOCKET_LIST[socket.id];
     console.log('Player Disconnected, Players left:  ' + SOCKET_LIST.length);
 };
     
