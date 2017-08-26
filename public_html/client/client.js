@@ -28,8 +28,9 @@ function addTurnListener(id) {
 };
 
 //========================CHESS CLIENT============
-    var canv = getElementById('canv').getContext("2d");
-    
+var canv = getElementById('canv').getContext("2d");
+canv.fillStyle = 'yellow';    
+canv.fillRect(50,50,150,100);
     let gameState = {};
     var board = [];
 

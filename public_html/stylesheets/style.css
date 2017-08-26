@@ -829,7 +829,7 @@ aside{/*PC ONLY----*/
 }
 #board{
     position: absolute;
-    right: 100%;
+    left: 100%;
     top: 0;
 }
 #board tr{
@@ -838,6 +838,7 @@ aside{/*PC ONLY----*/
 }
 #board th{
     width: 50px;
+    color: darksalmon;
 }
 #selected{
     width: 300px;

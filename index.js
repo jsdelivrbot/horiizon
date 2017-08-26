@@ -138,7 +138,7 @@ function updater(data){
 };
 function setBoard(){
     var pack = [];
-    board = new NewGame();
+    var board = new NewGame();
     console.log('Board was set!');
     updater(board);
 };
