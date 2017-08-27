@@ -2,6 +2,7 @@
 <html>  
 <head>
   <% include ./partials/head.ejs %>
+    
 </head>
 <body> 
 <div id="container"><!--MAIN CONTAINER CLASS-->
@@ -27,6 +28,32 @@
 		
         <div id="chessDIv">
             <canvas id="canv" height="400" width="400"></canvas>
+            
+            <script type="text/javascript">
+                var c = document.getElementById("canv");
+                var ctx = canv.getContext("2d");
+
+                for(i=0; i<8; i++) {
+                    for(j=0; j<8; j++){
+                        ctx.moveTo(0,50*j);
+                        ctx.lineTo(400,50*j);
+                        ctx.stroke();
+
+                        ctx.moveTo(50*i,0);
+                        ctx.lineTo(50*i,400);
+                        ctx.stroke();
+                        var left = 0;
+                        for(var a=0;a<8;a++) {
+                        for(var b=0; b<8;b+=2) {
+                            startX = b * 50;
+                            if(a%2==0) startX = (b+1) * 50;
+                      ctx.fillRect(startX + left,(a*50) ,50,50);
+                    }};
+                }};
+
+                
+            </script>
+                
 
             <table id="board">
            <tr>
@@ -116,14 +143,16 @@
             <button class="testButton" type="button" onclick="alert('test')">Test</button>
             <button class="testButton" type="button" onclick="alert('reset')">Reset</button>
             <button class="testButton" type="button" onclick="alert('Data!')">Info</button>
+            
+            <div id="display">
+                <p>Display</p>
+            </div>
         </div>
         
 	</section>  
  </main>
  </div><!--========END OF CONTAINER WRAPPER==-->
-    
 <script src="/socket.io/socket.io.js"></script>
 <script src="/client/client.js"></script>
-    
 </body>
 </html>

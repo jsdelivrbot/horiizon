@@ -2,6 +2,8 @@ var sock = io();
 
 sock.on('msg', onMessage);
 
+socket.on('update', function(data){});
+
 var form = document.getElementById('chat-form');
 
 form.addEventListener('submit', function (e) {
@@ -11,15 +13,13 @@ form.addEventListener('submit', function (e) {
     sock.emit('msg', value);
     e.preventDefault();
 });
-
-
-//FUNCTIONS
+//===============================FUNCTIONS
 function onMessage(text) {//when msg: text received
     var list = document.getElementById('chat');
     var el = document.createElement('li');
     el.innerHTML = text;
     list.appendChild(el);
-}
+};
 function addTurnListener(id) {
     var button = document.getElementById(id);
     button.addEventListener('click', function () {
@@ -28,17 +28,8 @@ function addTurnListener(id) {
 };
 
 //========================CHESS CLIENT============
-var canv = getElementById('canv').getContext("2d");
-canv.fillStyle = 'yellow';    
-canv.fillRect(50,50,150,100);
-    let gameState = {};
-    var board = [];
+var canv = document.getElementById("canv");
+var ctx = canv.getContext("2d");
+ctx.fillRect(0,0,150,100);
 
-    
-    socket.on('update', function(data){
-        alert('Update Event Received!')
-        
-        gameState = data.game;
-        canv.clearRect(0,0,400,400);
-        canv.fillText('Hi'+data.x);
-    });
+
