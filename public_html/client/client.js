@@ -30,6 +30,18 @@ function addTurnListener(id) {
 //========================CHESS CLIENT============
 var canv = document.getElementById("canv");
 var ctx = canv.getContext("2d");
-ctx.fillRect(0,0,150,100);
+var whiteTeam = [];
+var blackTeam = [];
+                
+
+
+function preload() {
+    var img = loadImage('../chessImg/B-King.png');
+}
+
+                
+                
+                
+                
 
 

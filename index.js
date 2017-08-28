@@ -13,7 +13,8 @@ var data = {counter: 1};
 app.set('port', PORT);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/public_html'));
+app.use(express.static(__dirname + '/public_html'
+                      ));
 
 //===============MONGO================
 /*
@@ -75,7 +76,6 @@ function onConnect(socket){
     socket.id = Math.random();
     SOCKET_LIST[socket.id] = socket;
     
-    
     socket.x1 = 0;
     socket.x2 = 0;
     socket.y1 = 0;
@@ -83,30 +83,45 @@ function onConnect(socket){
     
     setBoard();
 };
+var whiteTeam =[];
+var blackTeam =[];
+var peiceName = [];
 
-var peices = {
-    1:"W Pawn",
-    2:"W Rook1",
-    3:"W Knight1",
-    4:"W Bishop1",
-    5:"W Queen",
-    6:"W King",
-    7:"W Bishop2",
-    8:"W Knight2",
-    9:"W Rook2",
+function initPeices(){
+    var column = 'a';
+    for(var i=0;i<8;i++){//create pawns
+        console.log('initPeices: '+ column);
+        var wp = new Peice(i,column + 2);
+        whiteTeam.push(wp);
+        var b = new Peice((i+10),(column + 7));
+        blackTeam.push(bp);
+        column = incrChar(column);
+    };
+}
 
-    11:"B Pawn",
-    12:"B Rook1",
-    13:"B Knight1",
-    14:"B Bishop1",
-    15:"B Queen",
-    16:"B King",
-    17:"B Bishop2",
-    18:"B Knight2",
-    19:"B Rook2"
+
+
+function loadTeam(){
+    var col = "a"; //Column Letter Position
+    for(var i=1;i<9;i++){//create PAWNS
+        var w = new Peice('W-', 1,(col + 2));
+        var b = new Peice('B-', 11,(col + 7)); 
+        console.log('col is: ' + col);
+        incrChar(col);
+        console.log('col after: '+col);
+    };
 };
 
-
+function Peice(num, pos) { //OBJECT PROTOTYPE
+    this.name = peiceName;
+    this.num = num;
+    this.team = team;
+    this.type = ""; //O-L-X-H-P  Moving Patterns
+    this.pos = pos;
+};
+function incrChar(c) {
+    return String.fromCharCode(c.charCodeAt(0) + 1)
+};
 function NewGame() {
     var a = [];
     
