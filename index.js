@@ -85,18 +85,30 @@ function onConnect(socket){
 };
 var whiteTeam =[];
 var blackTeam =[];
-var peiceName = [];
 
-function initPeices(){
-    var column = 'a';
-    for(var i=0;i<8;i++){//create pawns
-        console.log('initPeices: '+ column);
-        var wp = new Peice(i,column + 2);
-        whiteTeam.push(wp);
-        var b = new Peice((i+10),(column + 7));
-        blackTeam.push(bp);
-        column = incrChar(column);
-    };
+var peiceName = [
+    "EMPTY",//i[0]
+    "W-Rook 1", "W-Knight 1", "W-Bishop 1", "W-Queen",//[1-4]
+    "W-King", "W-Bishop 2", "W-Knight 2", "W-Rook 2",//[5-8]
+    "W-Pawn 1","W-Pawn 2","W-Pawn 3","W-Pawn 4",//[9-12]
+    "W-Pawn 5","W-Pawn 6","W-Pawn 7","W-Pawn 8",//[13-16]
+    "B-Rook 1", "B-Knight 1", "B-Bishop 1", "B-Queen",//[1-4]
+    "B-King", "B-Bishop 2", "B-Knight 2", "B-Rook 2",//[5-8]
+    "B-Pawn 1","B-Pawn 2","B-Pawn 3","B-Pawn 4",//[9-12]
+    "B-Pawn 5","B-Pawn 6","B-Pawn 7","B-Pawn 8"//[13-16]
+];
+
+function Peice(num, pos) { //OBJECT PROTOTYPE
+    this.name = peiceName[num];
+    this.num = num;
+    this.team = team;
+    this.type = ""; //O-L-X-H-P  Moving Patterns
+    this.pos = pos;
+};
+
+
+function initBoard() {
+    for(var i=)
 }
 
 
@@ -112,13 +124,7 @@ function loadTeam(){
     };
 };
 
-function Peice(num, pos) { //OBJECT PROTOTYPE
-    this.name = peiceName;
-    this.num = num;
-    this.team = team;
-    this.type = ""; //O-L-X-H-P  Moving Patterns
-    this.pos = pos;
-};
+
 function incrChar(c) {
     return String.fromCharCode(c.charCodeAt(0) + 1)
 };

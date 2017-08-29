@@ -36,8 +36,15 @@ var blackTeam = [];
 
 
 function preload() {
-    var img = loadImage('../chessImg/B-King.png');
+    for(var i =1;i<)
+    var img = loadImage('../chessImg/' + peiceName[i] + '.png');
+    return img;
 }
+
+var t = preload();
+
+
+
 
                 
                 
