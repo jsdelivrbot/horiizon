@@ -54,6 +54,10 @@ io.on('disconnect', onDisconnect);
 app.get('/about', function (req, res) {
     res.send('hello');
 });
+app.get('/home', (req, res) => {
+    res.render('home');
+    console.log('App get request for /home');
+});
 app.get('/chess', function (req, res) {
     res.render('chess', {data: data});
     data.counter++;
@@ -108,7 +112,7 @@ function Peice(num, pos) { //OBJECT PROTOTYPE
 
 
 function initBoard() {
-    for(var i=)
+    
 }
 
 
