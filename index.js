@@ -96,10 +96,10 @@ var peiceName = [
     "W-King", "W-Bishop 2", "W-Knight 2", "W-Rook 2",//[5-8]
     "W-Pawn 1","W-Pawn 2","W-Pawn 3","W-Pawn 4",//[9-12]
     "W-Pawn 5","W-Pawn 6","W-Pawn 7","W-Pawn 8",//[13-16]
-    "B-Rook 1", "B-Knight 1", "B-Bishop 1", "B-Queen",//[1-4]
-    "B-King", "B-Bishop 2", "B-Knight 2", "B-Rook 2",//[5-8]
-    "B-Pawn 1","B-Pawn 2","B-Pawn 3","B-Pawn 4",//[9-12]
-    "B-Pawn 5","B-Pawn 6","B-Pawn 7","B-Pawn 8"//[13-16]
+    "B-Rook 1", "B-Knight 1", "B-Bishop 1", "B-Queen",//[21-24]
+    "B-King", "B-Bishop 2", "B-Knight 2", "B-Rook 2",//[25-28]
+    "B-Pawn 1","B-Pawn 2","B-Pawn 3","B-Pawn 4",//[29-32]
+    "B-Pawn 5","B-Pawn 6","B-Pawn 7","B-Pawn 8"//[33-36]
 ];
 
 function Peice(num, pos) { //OBJECT PROTOTYPE

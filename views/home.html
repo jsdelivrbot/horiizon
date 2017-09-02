@@ -29,20 +29,48 @@
     
 <body>
     <header>
-        <% include ./partials/header %>
+        <div class="row" style="height:200px;background:black">
+            <a href="index">
+                <div class="col-sm-6" style="height:30px">
+                    
+                </div>
+                <div class="col-xs-3 col-sm-12" style="height:40px">
+                    <h1>Horiizon - Net Leverage  <span class="blinking-cursor">|</span></h1>
+                </div>
+                <div class="col-sm-3" style="background:red">
+                    <h2>Power User Central</h2>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Montreal Based Canada</h3>   
+                </div>
+                
+                <div>FLAG</div> 
+            </a>
+        </div>
     </header>
     
 <div class="container" id="bg-container">
   
-    <div class="row">
-        <div class="col">
-          1 of 2
+    <div class="row" style="height:200px; background:red">
+        <div class="col-sm-10">
+          row 1 col 1
         </div>
-        <div class="col">
-          2 of 2
+        <div class="col-sm-2">
+          row 1 col 2
         </div>
     </div>
-
+    
+    <div class="row">
+        <div class="col">
+          1
+        </div>
+        <div class="col">
+          2
+        </div>
+        <div class="col">
+          3
+        </div>
+    </div>
     
 </div>
 <script src="/socket.io/socket.io.js"></script>
