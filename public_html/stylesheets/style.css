@@ -441,21 +441,7 @@ aside{/*PC ONLY----*/
 	background: rgba(0,0,0,0.6);
 	border-radius: 6px;
 }
-.blinking-cursor {
-  font-weight: 100;
-  font-style: italic;
-  font-size: 30px;
-  color: #2E3D48;
-  animation: 1s blink step-end infinite;
-}
-@keyframes blink {
-  0%{
-    color: transparent;
-  }
-  50%{
-    color: lawngreen;
-  }
-}
+
 #pickupLine {
 	min-width: 300px;
 	max-width: 340px;

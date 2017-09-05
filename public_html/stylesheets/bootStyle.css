@@ -1,4 +1,66 @@
+
+*{
+    font-family: 'Ek Mukta';
+}
+html body{
+    background: black;
+}
 #bg-container{
     background-color: black;
     background-image: url('../images/planet.jpg');
+}
+/*=============NAV========*/
+#nav{
+    text-align: center;
+}
+/*============BANNER=====*/
+#banner{
+    color: white;
+    opacity: 0.7;
+}
+#banner h1{
+    font-size: 30px;
+    
+}
+.blinking-cursor {
+  font-weight: 100;
+  font-style: italic;
+  font-size: 30px;
+  color: #2E3D48;
+  animation: 1s blink step-end infinite;
+}
+@keyframes blink {
+  0%{
+    color: transparent;
+  }
+  50%{
+    color: lawngreen;
+  }
+}
+#banner h3{
+    font-size: 20px;
+
+}
+/*==============SEARCH=======*/
+#search h2{
+    font-size: 14px;
+    text-align: right;
+}
+/*==============MENU=========*/
+#menu{
+    text-align: left;
+}
+/*==============CONTENT======*/
+#content{
+    border: 1px red dotted;
+}
+/*==============CHAT-ROOM====*/
+/*==============FOOTER=======*/
+#footer{
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    
+
 }
